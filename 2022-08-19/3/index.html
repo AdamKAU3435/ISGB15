@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenta</title>
+</head>
+<body>
+    <form method="post">
+        <div id="error"></div>
+        <label for="pers">Fyll i ditt personnummer på formen nedan</label><br>
+        <input type="text" id="pers" placeholder="ÅÅMMDD-XXXX"><br>
+
+        <p>Välj storlek på lägenhet</p>
+        <input type="radio" name="size" value="28">1:a 28:kvm<br>
+        <input type="radio" name="size" value="34">1:a 34:kvm<br>
+        <input type="radio" name="size" value="39">2:a 39:kvm<br>
+        <input type="radio" name="size" value="58">3:a 58:kvm<br>
+
+        <p><Label for="floor">Välj våning*</Label></p>
+        <select id="floor">
+            <option value="0">Markplan</option>
+            <option value="1">Våning 1</option>
+            <option value="2">Våning 2</option>
+            <option value="3">Våning 3</option>
+            <option value="4">Våning 4</option>
+        </select><br>
+        <i class="small">
+            *Ettorna finns enbart på plan 1 & 2. Treorna enbart på plan 4 & 5.
+        </i><br>
+        <button type="submit">Skicka anmälan!</button>
+        <br><br>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
