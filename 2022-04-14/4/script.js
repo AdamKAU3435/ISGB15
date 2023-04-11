@@ -1,56 +1,61 @@
-function addClickListenersToButtons(){
+    'use strict';
 
-// Hämtar inköpslistan från HTML-dokumentet.
-let list = document.getElementById("list");
+    // Add click event listeners to all buttons with a data-add attribute
+    function addClickListenerstoButtons() {
 
-// Hämtar alla knappar med attributet "data-add" från HTML-dokumentet.
-let buttons = document.querySelectorAll("[data-add]");
+        // Get the list that will contain all the items
+        let list = document.getElementById("foodlist");
 
-// Loopar genom alla knappar med attributet "data-add".
-for (let i = 0; i < buttons.length; i++) {
+        // Select all the buttons that have a data-add attribute
+        let buttons = list.querySelectorAll("[data-add]");
 
-  // Sparar aktuell knapp i variabeln button.
-  let button = buttons[i];
+        // Loop through each button
+        for (let i = 0; i < buttons.length; i++) {
 
-  // Lägger till klick-lyssnare på knappen.
- 
+            // Get the current button
+            let button = buttons[i];
 
-  button.addEventListener("click", function (event) {
+            // Add a click event listener to the current button
+            button.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent the default button click behavior
 
-    event.preventDefault(); // avbryt default-beteendet
+                // Create a new div element for the new item
+                let item = document.createElement("div");
 
-    // Skapar ett nytt div-element som ska innehålla varan som lades till.
-    let item = document.createElement("div");
+                // Get the value of the data-add attribute from the clicked button
+                let addValue = button.getAttribute('data-add');
 
-    // Hämtar texten från knappens "data-add"-attribut och sätter den som text-innehåll i div-elementet.
-    item.textContent = button.getAttribute("data-add");
+                // Create a new text node with the addValue and append it to the item div
+                let text = document.createTextNode(addValue);
+                item.appendChild(text);
 
-    // Lägger till en mus-over-lyssnare på varan för att ändra dess font-weight till bold.
-    item.addEventListener("mouseover", function () {
-      item.style.fontWeight = "bold";
-    });
+                // Add a mouseover event listener to the item div to change the font weight to bold
+                item.addEventListener("mouseover", function () {
+                    item.classList.add('font-weight-bold');
+                });
 
-    // Lägger till en mus-out-lyssnare på varan för att återställa dess font-weight.
-    item.addEventListener("mouseout", function () {
-      item.style.fontWeight = "";
-    });
+                // Add a mouseout event listener to the item div to remove the bold font weight
+                item.addEventListener("mouseout", function () {
+                    item.classList.remove('font-weight-bold');
+                });
 
-    // Skapar en knapp för att ta bort varan.
-    let removeButton = document.createElement("button");
-    removeButton.textContent = "-";
+                // Create a new button to remove the item
+                let removeButton = document.createElement("button");
+                removeButton.textContent = "-";
 
-    // Lägger till klick-lyssnare på ta-bort-knappen för att ta bort varan från inköpslistan.
-    removeButton.addEventListener("click", function () {
-      item.remove();
-    });
+                // Add a click event listener to the remove button to remove the item
+                removeButton.addEventListener("click", function () {
+                    item.remove();
+                });
 
-    // Lägger till ta-bort-knappen som ett child-element till varan.
-    item.appendChild(removeButton);
+                // Append the remove button to the item div
+                item.appendChild(removeButton);
 
-    // Lägger till varan som ett child-element till inköpslistan.
-    list.appendChild(item);
-  });
-}
-  
-}
-addClickListenersToButtons();
+                // Append the item div to the list
+                list.appendChild(item);
+            });
+        }
+    }
+
+    // Call the function to add click event listeners to the buttons
+    addClickListenerstoButtons();

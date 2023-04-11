@@ -42,7 +42,53 @@
             </tbody>
         </table>
     </div>
+    <script>
+        
+        
+        'use strict'
 
-<script src="script.js"></script>
+       let tdRef = document.querySelectorAll("[data-console]");
+
+        function consoleIsModernOrRetro(){
+            
+
+            for(let i = 0;i<tdRef.length;i++){
+                let td = tdRef[i];
+                
+                let textValue = td.getAttribute("data-console");
+                let text = document.createTextNode(textValue); 
+
+                while(td.firstChild){
+                    td.removeChild(td.firstChild);
+                }
+
+                td.appendChild(text);
+
+            }
+
+        }
+        consoleIsModernOrRetro();
+
+        /*let tdRefs = document.querySelectorAll("[data-console]");
+
+for(let i = 0;i<tdRefs.length;i++){
+    let td = tdRefs[i];
+
+    let textNode = document.createTextNode(td.getAttribute("data-console"));
+
+    while(td.firstChild){
+        td.removeChild(td.firstChild);
+    }
+    
+    td.appendChild(textNode);
+}*/
+
+
+
+
+
+    </script>
+
+    <!--<script src="script.js"></script>-->
 </body>
 </html>

@@ -18,11 +18,50 @@
         Exempel på retro konsoler är
         <span data-console="retro"><i>Sinclair ZX Spectrum Vega</i></span>,
         <span data-console="retro"><i>VIC 20</i></span> och
-        <span data-console="retro"><stirong>Commodore 64</i></span>.
+        <span data-console="retro"><i>Commodore 64</i></span>.
 
             <div id="newContent"></div>
     </div>
+    <script>
+'use strict'
 
-    <script src="script.js"></script>
+let oList = {
+    
+  divRef: document.querySelector("#newContent"),
+
+  myCreateElement: function(consoles) {//Här
+    console.log(consoles);
+    let ol = document.createElement("ol");
+
+
+    for(let i = 0; i<this.myNumberOfConsoles(consoles);i++){
+        let li = document.createElement("li");
+        li.innerHTML = consoles[i].innerHTML;
+
+        ol.appendChild(li);
+    }
+
+    this.divRef.appendChild(ol);
+  },
+
+  myNumberOfConsoles(consoles) {
+    return consoles.length
+  },
+
+  myCallMethodToCreate() {
+    let modernConsoles = document.querySelectorAll("span[data-console=modern]")
+    let retroConsoles = document.querySelectorAll("span[data-console=retro]")
+
+    this.myCreateElement(modernConsoles)
+    this.myCreateElement(retroConsoles)
+  },
+}
+
+oList.myCallMethodToCreate()
+    </script>
+
+    
+
+    <!--<script src="script.js"></script>-->
 </body>
 </html>

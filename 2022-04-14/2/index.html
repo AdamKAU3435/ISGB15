@@ -35,6 +35,10 @@ let oHeadings = {
     }
 };
 
+
+
+
+// Funktion som skapar rubriker och lägger till dem i <div> elementet.
 oHeadings.createHeadings = function (nbr) {
 
     if(oHeadings.checkNbr(nbr) == true ){
@@ -50,10 +54,9 @@ oHeadings.createHeadings = function (nbr) {
 }
 
 // Loopar igenom alla siffror från 1 till 6 och skapar rubriker med respektive siffra som text.
-for(let i = 1; i <= 6; i++){
+for(let i = 1; i < 8; i++){
     oHeadings.createHeadings(i);  // Anropar funktionen som skapar rubriker och lägger till dem i <div> elementet.
 }
-
 
     </script>
 

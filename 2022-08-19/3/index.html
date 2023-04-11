@@ -33,6 +33,41 @@
         <br><br>
     </form>
 
-    <script src="script.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            
+            let form = this.document.querySelector("form");
+            form.addEventListener("submit", validate);
+            
+            function validate(event){
+                let pnr = document.getElementById("pers");
+                
+                try {
+                    if(pnr.value.length < 11){
+                        throw {element:pnr, message:"Numret är för kort brori!"}
+                    }
+    
+                    let size = document.getElementsByName("size");
+                    let level = document.querySelector("select");
+    
+                    if(level.value > 2){
+                        for(let i = 0; i < size.length; i++){
+                            if(size[i].checked && size[i].value < 39){
+                                throw {element:size[i], message:"Våningen går inte att välja"}
+                            }
+                        }
+                    }
+                } catch (error) {
+                    let errorDiv = document.querySelector("#error");
+                    error.element.style.border="solid red 1px";
+                    errorDiv.textContent=error.message;
+                    event.preventDefault();
+                }    
+            }
+        });
+    </script>
+
+
+    <!--<script src="script.js"></script>-->
 </body>
 </html>

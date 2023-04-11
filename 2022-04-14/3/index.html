@@ -16,41 +16,51 @@
         <input type="radio" name="arende" value="bird" checked> Kontakta mig om fåglar<br> <input type="radio" name="arende" value="boat"> Kontakta mig om båtar<br>
         <input type="radio" name="arende" value="fish"> Kontakta mig om fiske<br>
         <input type="radio" name="arende" value="travel"> Kontakta mig om resor<br>
-        <label for="klockslag">Välj en tid när du vill bli kontaktad:</label> <select id="klockslag">
+        <label for="klockslag">Välj en tid när du vill bli kontaktad:</label>
+        <select id="klockslag">
         <option value="8">klockan 8:00-8:30</option>
         <option value="8.5">klockan 8:30-9:00</option> <option value="9" selected>klockan 9:00-9:30</option>
          </select><br>
         <button type="submit">Skicka förfrågan</button><br><br> </form>
 
-        <!--<script>
-    
-            let form = document.querySelector(form);
+        <script>
+            
+            let form = document.querySelector("form");
             form.addEventListener("submit", validate);
 
             function validate(event){
-                
+                let errorDiv = document.querySelector("#error")
+                let mejl = document.querySelector("input[type=text]");
+                let fish = document.querySelector("input[value=fish]");
+                let klockan = document.querySelector("select");
 
-                try{
-                    let emailDiv = form.querySelector("#email");
-                    if (emailDiv.value.length < 6) {
-                        throw {element:emailDiv, message: "Epost för kort."}
+                try {
+
+                    if (mejl.value.length < 6) {
+                        throw {element: mejl, message: "Email måste innehålla minst 6 tecken"}
                     }
-                    let radio = document.querySelector("input[type=radio][value = fish]");
-                    console.log(radio); 
-                }
-                catch(error){
-                    event.preventDefault();
-                    error.element.style.border = "1px solid red";
-                    let errorDiv = document.querySelector("#error");
-                    errorDiv.textContent = error.message;
+
+                    if(!fish.checked){
+                        throw {element:fish, message: "Fisk inte vald"}
+                    }
+                        
+                    if (klockan.value != 8) {
+                        throw {element:klockan, message:"Nix!!! korrekt tid inte ifylld"}
+                    }
+
                     
                 }
-
+                catch(error) {
+                    error.element.style.border ="1px solid red";
+                    errorDiv.textContent = error.message;
+                    event.preventDefault();
+                }
             }
 
-        </script>-->
 
-    <script src="script.js"></script>
+        </script>
+
+    <!--<script src="script.js"></script>-->
     
 </body>
 </html>

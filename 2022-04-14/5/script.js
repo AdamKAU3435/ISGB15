@@ -48,7 +48,6 @@ function createCarInformation(list, listItem, data){
 
     // Adding the list item with car information to the unordered list
     list.appendChild(listItem);
-
 }
 
 // Calling the function to generate the list of car information on the webpage

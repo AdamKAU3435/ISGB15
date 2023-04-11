@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+//Koden här fungerar inte.
 
 window.addEventListener("load", function() {
 
@@ -7,7 +8,7 @@ window.addEventListener("load", function() {
 
     function validate(event){
         event.preventDefault();
-        console.log("Fungerar!!")
+        let errorDiv = document.querySelector("#error");
 
         try{
             let person = document.querySelector("input[type=text]");
@@ -15,22 +16,22 @@ window.addEventListener("load", function() {
             if(person.value.length < 11){
                 throw {element:person, message:"Personnummer är för kort!"}
             }
-            let errorDiv = document.querySelector("#error");
             errorDiv.textContent = "";
-            person.style.border = "";
+            //person.style.border = "";
 
-            /*let select = document.querySelector("#floor");
-            let storlek = document.querySelector("input[type=value");
-            let våning = document.querySelector("select option");
-            if(storlek < 39 && option.value > 1){
-                throw {element: select, message:"Vald lägenhet finns ej på detta våningsplan"}
-            }*/
+            let select = document.querySelector("select");
+            let storlek = document.querySelector("input[type=value]");
+
+            console.log(storlek.value +" Värde för Storlek");
+            if(storlek.value <= 39 && select.value > 1){
+                throw {element:person, message:"Personnummer är för kort!"}
+                //throw {element:select, message:"Vald lägenhet finns ej på detta våningsplan"}
+            }
             
         }
         catch(error){
             event.preventDefault();
             error.element.style.border = "1px solid red";
-            let errorDiv = document.querySelector("#error");
             errorDiv.textContent = error.message;
         }
     }
