@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="#">
+        <div id="error"></div>
+        <label for="telefon">Fyll i ditt Mobilnummer (utan bindesträck)</label>
+        <input type="text" id="telefon" placeholder="0735377803"><br>
+
+        <p>Välj vilken färg du vill du ha</p>
+        <input type="radio" name="farg" value="red" checked> Röd<br>
+        <input type="radio" name="farg" value="green"> Grön<br>
+        <input type="radio" name="farg" value="blue"> Blå<br>
+        <input type="radio" name="farg" value="yellow"> Gul<br>
+
+        <p>Välj tillbehör*:</p>
+        <label><input type="checkbox" name="ratt">Ratt</label><br>
+        <label><input type="checkbox" name="hjul">Hjul</label><br>
+        <label><input type="checkbox" name="sate">Säten</label><br>
+        <label><input type="checkbox" name="spegel">Backspegel</label><br>
+        <i> *En avgift om 250 000kr utgår per valt tillbehör</i>
+        <br>
+        <button type="submit">Boka Bil</button>
+        <br>
+        <br>
+    </form>
+
+    <script>
+        'use strict';
+        
+        let form = document.querySelector("form");
+        let errorDiv = document.querySelector("#error");
+        let phone = document.querySelector("#telefon");
+        let radioGreen = document.querySelector("[value =green]");
+        let allCheck = document.querySelectorAll("input[type=checkbox]");
+        form.addEventListener("submit", function validate(event){
+            
+
+            try{
+                if(isNaN(phone.value)){
+                    throw{element:phone,message:"Endast siffror"}
+                }
+                if(!radioGreen.checked){
+                    throw{element:radioGreen,message:"Fel färg är vald!"}
+                }
+                for(let i = 0;i<allCheck.length;i++){
+
+                    if(!allCheck[i].checked){
+                        throw{element:allCheck[i],message:"Alla är inte valda"}
+                    }
+                }
+            }
+            catch(error){
+                event.preventDefault();
+                errorDiv.textContent=error.message;
+                error.element.style.border="1px solid red";
+            }
+        });
+        
+
+        
+    </script>
+
+    <!--<script src="script.js"></script>-->
+</body>
+</html>

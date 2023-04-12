@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <table>
+            <tr>
+                <td data-type="item" data-price="63">Pasta</td>
+                <td data-type="item" data-price="69">Ris</td>
+                <td data-type="item" data-price="59">Potatis</td>
+            </tr>
+            <tr>
+                <td data-type="ad">KAU.se</td>
+                <td data-type="ad">Beställ den bästa maten</td>
+                <td data-type="ad">KAU.se</td>
+            </tr>
+        </table>
+        <hr>
+        <div id="order">
+            <h1>Beställning</h1>
+        </div>
+        <hr>
+        <div id="checkout">
+            <a href="https://www.kau.se/" id="pay" data-type="pay">Betala</a>
+            <p id="status"></p>
+        </div>
+
+        <script>
+            // vänta tills hela dokumentet har laddats
+            window.addEventListener("load", function () {
+              let table = document.querySelector("table");
+              let orderDiv = document.querySelector("#order");
+              let statusP = document.querySelector("#status");
+      
+              // lyssnare för att kontrollera om användaren har klickat på en maträtt
+              table.addEventListener("click", function (event) {
+                let target = event.target;
+                // kontrollera om det klickade elementet har attributet data-type="item"
+                if (target.getAttribute("data-type") === "item") {
+                  // skapa en ny div för beställningen
+                  let orderItem = document.createElement("div");
+      
+                  // skapa en h4 med namnet på maträtten
+                  let orderHeader = document.createElement("h4");
+                  orderHeader.textContent = target.textContent;
+                  orderItem.appendChild(orderHeader);
+      
+                  // skapa en p med priset på maträtten
+                  let orderPrice = document.createElement("p");
+                  orderPrice.textContent = target.getAttribute("data-price") + " kr";
+                  orderItem.appendChild(orderPrice);
+      
+                  // lägg till beställningen till orderDiv
+                  orderDiv.appendChild(orderItem);
+                }
+              });
+      
+              // lyssnare för att kontrollera om användaren har klickat på "Betala"-länken
+              let payLink = document.querySelector("#pay");
+              payLink.addEventListener("click", function (event) {
+                event.preventDefault(); // avbryt standardbeteendet för länken
+                event.stopPropagation(); // stoppa bubbling av eventet
+      
+                // ta bort lyssnaren på table-elementet
+                table.removeEventListener("click", arguments.callee);
+      
+                // lägg till texten "Klart!" till statusP
+                statusP.textContent = "Klart!";
+              });
+            });
+          </script>
+</body>
+</html>

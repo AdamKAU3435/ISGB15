@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list">
+tjabba
+    </div>
+    <script>
+        let ItemsObject = [
+            {"id":0, "title": "food 1", "price": "54kr","type": "food"},
+            {"id":1, "title": "Drink 1", "price": "19kr","type": "drink"},
+            {"id":2, "title": "Food 2", "price": "62kr","type": "food"},
+        ];
+
+        let list = document.querySelector("#list");
+
+        for (let i = 0; i< ItemsObject.length; i++){
+
+            let div = document.createElement=("div");
+            div.setAttribute("class","list-item");
+            div.setAttribute("data-id",i); 
+            list.appendChild(div);
+
+            let ptag = docume
+t      .createElement=("p");
+            ptag.setAttribute("data-type",ItemsObejct[i].type);
+            div.appendChild(ptag); 
+            let pvalue = document.createTextNode(ItemsObject[i].title +" "+ itemsObject[i].price);
+            ptag.appendChild(pvalue);
+
+            let aTag = document.
+
+            
+
+
+
+
+
+
+        }
+        
+
+
+    </script>
+    
+</body>
+</html>

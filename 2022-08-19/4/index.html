@@ -7,6 +7,70 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="list">
+
+    </div>
+    <script>
+        let ItemsObject = [
+            {"id":0, "title": "food 1", "price": "54kr","type": "food"},
+            {"id":1, "title": "Drink 1", "price": "19kr","type": "drink"},
+            {"id":2, "title": "Food 2", "price": "62kr","type": "food"},
+        ];
+        let list = document.querySelector("#list");
+        
+
+        for(let i = 0;i<ItemsObject.length;i++){
+            let div = document.createElement("div");
+            div.setAttribute("class","list-item");
+            div.setAttribute("data-id",i);
+            list.appendChild(div);
+
+            let text = document.createElement("p");
+            text.setAttribute("data-type",ItemsObject[i].type);
+            div.appendChild(text);
+            let textValue = document.createTextNode(ItemsObject[i].title+" "+ItemsObject[i].price);
+            text.appendChild(textValue);
+
+            let aTag = document.createElement("a");
+            aTag.setAttribute("href","#");
+                aTag.setAttribute("data-func","add");
+                let textValueTwo = document.createTextNode("Add");
+                aTag.appendChild(textValueTwo);
+                div.appendChild(aTag);
+
+                let aTagTwo = document.createElement("a");
+                aTagTwo.setAttribute("href","#");
+                aTagTwo.setAttribute("data-func","remove");
+                let textValueTwoX = document.createTextNode("X");
+            
+                aTagTwo.appendChild(textValueTwoX);
+                div.appendChild(aTagTwo);
+        
+            
+            //div.appendChild(nameForClass);
+            //div.appendChild(dataID);
+            list.appendChild(div);
+
+        }
+
+        let divRefs = document.querySelector("div");
+        divRefs.addEventListener("click",function clicker(event){
+            event.preventDefault();
+            event.stopPropagation();
+
+                   let removeDiv = document.querySelector("a[data-func='remove']");
+                    let add = document.querySelector("a[data-func='add']");
+                    if(event.target === removeDiv) {
+                        //div1[i].parentNode.removeChild(div1[i]);
+                        divWithListItem[i].remove(divWithListItem[i]);
+                    }
+
+                    if(event.target === add) {
+                        divWithListItem[i].removeEventListener('click', kek);
+                    }
+        });
+
+    </script>
     
 </body>
 </html>
